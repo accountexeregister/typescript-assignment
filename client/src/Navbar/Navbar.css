@@ -1,0 +1,30 @@
+div {
+    color: white;
+    padding-left: 10px;
+}
+
+ul {
+    display: inline-block;
+    list-style-type: none;
+}
+
+li {
+    display: inline;
+    margin-right: 10px;
+}
+
+Link {
+    color: white;
+    text-decoration: none;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+}
+
+.nav-link-active {
+    color: cyan;
+    text-decoration: underline;
+    text-underline-offset: 20px;
+}

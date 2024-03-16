@@ -6,9 +6,10 @@ import {
     Outlet
 } from "react-router-dom";
 import React from "react";
-import Navbar from "./Navbar";
+import Navbar from "./Navbar/Navbar";
 import Settings from "./Pages/Settings";
 import Main from "./Pages/Main";
+import "./App.css";
 
 const App = () => {
 
