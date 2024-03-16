@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import NotificationConfig from "../Interfaces/NotificationConfig";
 import Notification from "../Interfaces/Notification";
+import NotificationsContainer from "../NotificationsContainer";
 
 const Main = (props: { config: NotificationConfig } ) => {
     const [notifications, setNotifications] = useState<Notification[]>([]);
     
     const deleteNotification = (id: number) => {
-        setNotifications(notifications.filter((notification) => notification.id !== id));
+        setNotifications(prevNotifications => prevNotifications.filter((notification) => notification.id !== id));
     };
 
 
@@ -14,12 +15,12 @@ const Main = (props: { config: NotificationConfig } ) => {
         const eventSource = new EventSource("http://127.0.0.1:9000/events");
         eventSource.onmessage = function(event: MessageEvent) {
             const data = JSON.parse(event.data);
-            const notification : Notification = {id: data.id, msg: data.msg};
+            const notification : Notification = {id: data.msg_id, msg: data.msg};
             setNotifications(prevNotifications => [
                 ...prevNotifications, 
                 notification
             ]);
-            notification.timeoutId = setTimeout(() => deleteNotification(notification.id), props.config.disappearTime * 1000);
+            // notification.timeoutId = setTimeout(() => deleteNotification(notification.id), props.config.disappearTime * 1000);
         };
 
         return () => {
@@ -31,19 +32,16 @@ const Main = (props: { config: NotificationConfig } ) => {
         notifications.forEach((notification) => {
             if (notification.timeoutId) {
                 clearTimeout(notification.timeoutId);
+                notification.timeoutId = undefined;
             }
-            setTimeout(() => deleteNotification(notification.id), props.config.disappearTime * 1000);
+            // setTimeout(() => deleteNotification(notification.id), props.config.disappearTime * 1000);
         });
     }, [props.config.disappearTime]);
 
 
     return (
-        <>
-            <ul>
-                {notifications.slice(0, props.config.count).map((notification) => <li key={notification.id}><div>{notification.msg}</div></li>
-                )}
-            </ul>
-        </>
+        <NotificationsContainer position={props.config.position} notifications={notifications} config={props.config} 
+            deleteNotification={deleteNotification} />
     );
 };
 
