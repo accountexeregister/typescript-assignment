@@ -3,19 +3,12 @@ import { Position } from "./Types/Position";
 import {
     createBrowserRouter,
     RouterProvider,
+    Link,
+    Outlet
 } from "react-router-dom";
 import React from "react";
+import Navbar from "./Navbar";
 
-const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <div>Hello world!</div>,
-    },
-    {
-        path: "settings",
-        element: <div>Settings</div>,
-    }
-]);
 
 const App = () => {
 
@@ -30,6 +23,27 @@ const App = () => {
         setPosition: setPosition,
         setDisappearTime: setNotificationDisappearTime
     };
+
+    const router = createBrowserRouter([
+        {
+            element: (
+                <>
+                <Navbar />
+                <Outlet />
+                </>
+            ),
+            children: [
+                {
+                    path: "/",
+                    element: <div>Hello world!</div>,
+                },
+                {
+                    path: "settings",
+                    element: <div>Settings</div>,
+                }
+            ]
+        }
+    ]);
 
     return (
         <React.StrictMode>
