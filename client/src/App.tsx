@@ -3,17 +3,16 @@ import { Position } from "./Types/Position";
 import {
     createBrowserRouter,
     RouterProvider,
-    Link,
     Outlet
 } from "react-router-dom";
 import React from "react";
 import Navbar from "./Navbar";
-
+import Settings from "./Pages/Settings";
 
 const App = () => {
 
     const [notificationCount, setNotificationCount] = useState(0);
-    const [position, setPosition] = useState("TOP_LEFT");
+    const [position, setPosition] = useState("TOP_LEFT" as Position);
     const [notificationDisappearTime, setNotificationDisappearTime] = useState(0);
     const notificationConfig = {
         count: notificationCount,
@@ -28,8 +27,8 @@ const App = () => {
         {
             element: (
                 <>
-                <Navbar />
-                <Outlet />
+                    <Navbar />
+                    <Outlet />
                 </>
             ),
             children: [
@@ -39,7 +38,7 @@ const App = () => {
                 },
                 {
                     path: "settings",
-                    element: <div>Settings</div>,
+                    element: <Settings config={notificationConfig} />,
                 }
             ]
         }

@@ -6,10 +6,10 @@ const Navbar = () => {
             <nav>
                 <ul>
                     <li>
-                        <Link to={`/`}>Main</Link>
+                        <Link to={"/"}>Main</Link>
                     </li>
                     <li>
-                        <Link to={`settings`}>Settings</Link>
+                        <Link to={"settings"}>Settings</Link>
                     </li>
                 </ul>
             </nav>
