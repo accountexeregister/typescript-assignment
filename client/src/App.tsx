@@ -8,6 +8,7 @@ import {
 import React from "react";
 import Navbar from "./Navbar";
 import Settings from "./Pages/Settings";
+import Main from "./Pages/Main";
 
 const App = () => {
 
@@ -34,7 +35,7 @@ const App = () => {
             children: [
                 {
                     path: "/",
-                    element: <div>Hello world!</div>,
+                    element: <Main config={notificationConfig} />
                 },
                 {
                     path: "settings",
