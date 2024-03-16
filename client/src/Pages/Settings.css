@@ -1,0 +1,42 @@
+.settings-div {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    padding: 15px;
+    color: white;
+}
+
+.settings-container {
+    display: flex;
+    align-items: center;
+    background-color: #636363;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    width: 870px;
+}
+
+span {
+    width: 200px;
+    flex-shrink: 0;
+    margin-right: 80px;
+}
+
+input {
+    width: 40px;
+    background-color: #636363;
+    border-width:0px;
+    border:none;
+    color: white;
+    margin-left: 20px;
+}
+
+label {
+    margin-left: 20px;
+}
+
+.settings-radio-button-div {
+    padding-left: 0px;;
+    display: flex;
+    flex-wrap: wrap;
+}
