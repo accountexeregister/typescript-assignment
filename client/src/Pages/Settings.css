@@ -9,11 +9,11 @@
 .settings-container {
     display: flex;
     align-items: center;
-    background-color: #636363;
+    background-color: #393f4fa0;
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 10px;
-    width: 870px;
+    width: 1000px;
 }
 
 span {
@@ -24,8 +24,7 @@ span {
 
 input {
     width: 40px;
-    background-color: #636363;
-    border-width:0px;
+    background-color: transparent;
     border:none;
     color: white;
     margin-left: 20px;

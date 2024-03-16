@@ -6,16 +6,16 @@ const linkStyle = {
     textDecoration: "none"
 };
 const CustomNavLink = (props: {to: string, text: string}) => {
- return (<NavLink className={({isActive}) =>
-    "nav-link" + (isActive ? "-active" : "")
-  } to={props.to}>{props.text}</NavLink>);
-}
+    return (<NavLink className={({isActive}) =>
+        "nav-link" + (isActive ? "-active" : "")
+    } to={props.to}>{props.text}</NavLink>);
+};
 
 const Navbar = () => {
     return (
         <div>
             <nav>
-                <span>Notification task</span>
+                <span className="notification-task">Notification task</span>
                 <ul>
                     <li>
                         <CustomNavLink to={"/"} text={"Main"} />

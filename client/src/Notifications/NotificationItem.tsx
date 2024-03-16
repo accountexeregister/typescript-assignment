@@ -18,6 +18,6 @@ const  NotificationItem = (props: { notification: Notification, config: Notifica
             <div>{notification.msg}</div>
         </div>
     );
-}
+};
 
 export default NotificationItem;
