@@ -1,0 +1,23 @@
+.notifications-container-TOP_LEFT {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.notifications-container-TOP_RIGHT {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.notifications-container-BOTTOM_LEFT {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.notifications-container-BOTTOM_RIGHT {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}

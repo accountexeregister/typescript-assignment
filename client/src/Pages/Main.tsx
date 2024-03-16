@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import NotificationConfig from "../Interfaces/NotificationConfig";
 import Notification from "../Interfaces/Notification";
-import NotificationsContainer from "../NotificationsContainer";
+import NotificationsContainer from "../Notifications/NotificationsContainer";
 
 const Main = (props: { config: NotificationConfig } ) => {
     const [notifications, setNotifications] = useState<Notification[]>([]);

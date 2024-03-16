@@ -1,5 +1,5 @@
-import NotificationConfig from "./Interfaces/NotificationConfig";
-import Notification from "./Interfaces/Notification";
+import NotificationConfig from "../Interfaces/NotificationConfig";
+import Notification from "../Interfaces/Notification";
 import { Dispatch, SetStateAction, useEffect } from "react";
 
 const  NotificationItem = (props: { notification: Notification, config: NotificationConfig, deleteNotification: (id: number) => void }) => {
