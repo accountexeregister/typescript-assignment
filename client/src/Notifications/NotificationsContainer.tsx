@@ -8,7 +8,7 @@ const NotificationsContainer = (props: { position: Position, notifications: Noti
     config: NotificationConfig, deleteNotification: (id: number) => void}) => {
     const { position, notifications, config, deleteNotification } = props;
     return (
-        <div className={`notifications-container-${position}`}>
+        <div id="notifications-container" className={`notifications-container-${position}`}>
         {notifications.slice(0, config.count).map((notification) => (
             <NotificationItem key={notification.id} notification={notification} config={config} deleteNotification={deleteNotification} />
         ))}
