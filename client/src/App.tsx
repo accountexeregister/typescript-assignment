@@ -1,5 +1,21 @@
 import { useState } from "react";
 import { Position } from "./Types/Position";
+import {
+    createBrowserRouter,
+    RouterProvider,
+} from "react-router-dom";
+import React from "react";
+
+const router = createBrowserRouter([
+    {
+        path: "/",
+        element: <div>Hello world!</div>,
+    },
+    {
+        path: "settings",
+        element: <div>Settings</div>,
+    }
+]);
 
 const App = () => {
 
@@ -13,10 +29,12 @@ const App = () => {
         setCount: setNotificationCount,
         setPosition: setPosition,
         setDisappearTime: setNotificationDisappearTime
-    }
+    };
 
     return (
-        <h1>Write your code here!</h1>
+        <React.StrictMode>
+            <RouterProvider router={router} />
+        </React.StrictMode>
     );
 };
 
