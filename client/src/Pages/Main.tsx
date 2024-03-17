@@ -10,6 +10,10 @@ const Main = (props: { config: NotificationConfig } ) => {
         setNotifications(prevNotifications => prevNotifications.filter((notification) => notification.id !== id));
     };
 
+    const updateNotifications = (endingIndex: number) => {
+        setNotifications((prevNotifications) => prevNotifications.slice(0, endingIndex));
+    };
+
 
     useEffect(() => {
         const eventSource = new EventSource("http://127.0.0.1:9000/events");
@@ -41,7 +45,7 @@ const Main = (props: { config: NotificationConfig } ) => {
 
     return (
         <NotificationsContainer position={props.config.position} notifications={notifications} config={props.config} 
-            deleteNotification={deleteNotification} />
+            deleteNotification={deleteNotification} updateNotifications={updateNotifications}/>
     );
 };
 
