@@ -16,9 +16,9 @@ const Main = (props: { config: NotificationConfig } ) => {
         eventSource.onmessage = function(event: MessageEvent) {
             const data = JSON.parse(event.data);
             const notification : Notification = {id: data.msg_id, msg: data.msg};
-            setNotifications(prevNotifications => [
-                ...prevNotifications, 
-                notification
+            setNotifications(prevNotifications => [ 
+                notification,
+                ...prevNotifications,
             ]);
             // notification.timeoutId = setTimeout(() => deleteNotification(notification.id), props.config.disappearTime * 1000);
         };
