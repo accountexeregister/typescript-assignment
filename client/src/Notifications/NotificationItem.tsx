@@ -15,7 +15,8 @@ const  NotificationItem = (props: { notification: Notification, config: Notifica
 
     return (
         <div className="notification-item">
-            <div>{notification.msg}</div>
+            <div className="message">{notification.msg}</div>
+            <button className="close-btn" onClick={() => deleteNotification(notification.id)}>X</button>
         </div>
     );
 };
