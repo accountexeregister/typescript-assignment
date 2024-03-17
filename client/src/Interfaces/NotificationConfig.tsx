@@ -1,12 +1,13 @@
+import { Dispatch, SetStateAction } from "react";
 import { Position } from "../Types/Position";
 
 interface NotificationConfig {
     count: number;
     position: Position;
     disappearTime: number;
-    setCount: (count: number) => void;
-    setPosition: (position: Position) => void;
-    setDisappearTime: (disappearTime: number) => void;
+    setCount: Dispatch<SetStateAction<number>>;
+    setPosition: Dispatch<SetStateAction<Position>>;
+    setDisappearTime: Dispatch<SetStateAction<number>>
 }
 
 export default NotificationConfig;

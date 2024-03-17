@@ -12,11 +12,12 @@ const NotificationsContainer = (props: { position: Position, notifications: Noti
     const notificationRefs = useRef<Array<HTMLDivElement | null>>([]);
     const offScreenContainerRef = useRef<HTMLDivElement>(null);
 
+    let slicedNotifications = notifications.slice(0, config.count);
     useEffect(() => {
         const visibleItems: Notification[] = [];
         let totalHeight = 0;
         const maxTotalHeight = screen.height - 300; // to calculate max items that can fit on the screen without scrolling
-        notifications.some((notification, index) => {
+        slicedNotifications.some((notification, index) => {
             const ref = notificationRefs.current[index];
             if (ref) {
                 const height = ref.clientHeight;
@@ -40,7 +41,7 @@ const NotificationsContainer = (props: { position: Position, notifications: Noti
         <div>
             {/* Renders invisible notifications for measuring NotificationItem heights */}
             <div style={{ position: 'absolute', top: '-9999px', left: '-9999px', visibility: 'hidden' }} ref={offScreenContainerRef}>
-                {notifications.map((notification, index) => (
+                {slicedNotifications.map((notification, index) => (
                     <div key={notification.id} ref={el => notificationRefs.current[index] = el}>
                         <NotificationItem key={notification.id} notification={notification} config={config} deleteNotification={deleteNotification} />
                     </div>

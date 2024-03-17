@@ -39,6 +39,14 @@ const Main = (props: { config: NotificationConfig } ) => {
         }
     }, [localStorage.getItem("notifications")]);
 
+    useEffect(() => {
+        const storedSettings = localStorage.getItem("settings");
+        if (storedSettings) {
+            props.config.setCount(JSON.parse(storedSettings).count);
+            props.config.setPosition(JSON.parse(storedSettings).position);
+            props.config.setDisappearTime(JSON.parse(storedSettings).disappearTime);
+        }
+    }, [localStorage.getItem("settings")]);
     /*
     useEffect(() => {
         // Save notifications to localStorage whenever the notifications state changes
