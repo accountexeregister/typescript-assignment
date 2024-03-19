@@ -5,7 +5,9 @@ import "./Settings.css";
 const Settings = (props: { config: NotificationConfig }) => {
     const { config } = props;
     const setConfigCountWithStorage = (count: number) => {
-        localStorage.setItem("settings", JSON.stringify({count: count, position: config.position, disappearTime: config.disappearTime}));
+        count = isNaN(count) ? 0 : count;
+        localStorage.setItem("settings", JSON.stringify({count: count, 
+            position: config.position, disappearTime: config.disappearTime}));
         config.setCount(count);
         /*
         config.setCount(count => {
@@ -27,6 +29,7 @@ const Settings = (props: { config: NotificationConfig }) => {
     }
 
     const setConfigDissapearTimeWithStorage = (disappearTime: number) => {
+        disappearTime = isNaN(disappearTime) ? 0 : disappearTime;
         localStorage.setItem("settings", JSON.stringify({count: config.count, position: config.position, disappearTime: disappearTime}));
         config.setDisappearTime(disappearTime);
         /*
@@ -43,8 +46,9 @@ const Settings = (props: { config: NotificationConfig }) => {
                 <span>Notification count</span>
                 <input
                     type="number"
-                    value={config.count}
-                    onChange={(e) => setConfigCountWithStorage(parseInt(e.target.value))}
+                    min="0"
+                    value={config.count.toString()}
+                    onChange={(e) => setConfigCountWithStorage(Math.abs(parseInt(e.target.value)))}
                 />
             </div>
             <div className="settings-container">
@@ -95,8 +99,9 @@ const Settings = (props: { config: NotificationConfig }) => {
                 <span>Notification disappear time</span>
                 <input
                     type="number"
-                    value={config.disappearTime}
-                    onChange={(e) => setConfigDissapearTimeWithStorage(parseInt(e.target.value))}
+                    min="0"
+                    value={config.disappearTime.toString()}
+                    onChange={(e) => setConfigDissapearTimeWithStorage(Math.abs(parseFloat(e.target.value)))}
                 />
                 <span>sec</span>
             </div>
