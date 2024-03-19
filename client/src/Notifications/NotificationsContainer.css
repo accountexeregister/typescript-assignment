@@ -20,10 +20,12 @@
   position: absolute;
   bottom: 0;
   left: 0;
+  max-height: calc(100% - 70px);
 }
 
 .notifications-container-BOTTOM_RIGHT {
   position: absolute;
   bottom: 0;
   right: 0;
+  max-height: calc(100% - 70px);
 }

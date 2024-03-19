@@ -81,7 +81,7 @@ const Main = (props: { config: NotificationConfig } ) => {
 
     return (
         <NotificationsContainer position={props.config.position} notifications={notifications} config={props.config} 
-            deleteNotification={deleteNotification} updateNotifications={updateNotifications}/>
+            deleteNotification={deleteNotification}/>
     );
 };
 
