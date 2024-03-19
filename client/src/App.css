@@ -3,4 +3,5 @@ body {
     font-family: "Roboto";
     font-weight: 500;
     font-size: medium;
+    height: calc(100vh - 16px - 1.6px);
 }

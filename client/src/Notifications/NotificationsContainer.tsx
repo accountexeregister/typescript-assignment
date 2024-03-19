@@ -16,11 +16,12 @@ const NotificationsContainer = (props: { position: Position, notifications: Noti
     useEffect(() => {
         const visibleItems: Notification[] = [];
         let totalHeight = 0;
-        const maxTotalHeight = screen.height - 300; // to calculate max items that can fit on the screen without scrolling
+        // const navbar = document.getElementById("navbar");
+        const maxTotalHeight = document.body.clientHeight - 70; // to calculate max items that can fit on the screen without scrolling
         slicedNotifications.some((notification, index) => {
             const ref = notificationRefs.current[index];
             if (ref) {
-                const height = ref.clientHeight;
+                const height = ref.offsetHeight + 10;
                 totalHeight += height;
                 if (totalHeight <= maxTotalHeight) {
                     visibleItems.push(notification);

@@ -13,7 +13,7 @@ const CustomNavLink = (props: {to: string, text: string}) => {
 
 const Navbar = () => {
     return (
-        <div>
+        <div id="navbar">
             <nav>
                 <span className="notification-task">Notification task</span>
                 <ul>
