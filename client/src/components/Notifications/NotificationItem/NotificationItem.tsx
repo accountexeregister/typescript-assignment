@@ -10,12 +10,15 @@ const  NotificationItem = (props: { notification: Notification, config: Notifica
         if (notification.timeoutId) {
             clearTimeout(notification.timeoutId);
         }
+        // Set timeout to delete the notification after the disappear time, and store the 
+        // timeout id in the notification
         notification.timeoutId = setTimeout(() => {
             deleteNotification(notification.id);
         }, config.disappearTime * 1000);
     };
 
-    const removeNotifTimeout = (notification: Notification) => {    
+    const removeNotifTimeout = (notification: Notification) => {  
+        // Remove the timeout if the notification is hovered, using the timeout id in notification to clear it  
         if (notification.timeoutId) {
             clearTimeout(notification.timeoutId);
         }
@@ -23,6 +26,7 @@ const  NotificationItem = (props: { notification: Notification, config: Notifica
     };
 
     useEffect(() => {
+        // When the notification item is rendered, add timeout if it does not exist yet
         if (!notification.timeoutId) {
             addNotifTimeout(notification);
         }
