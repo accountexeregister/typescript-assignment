@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Position } from "./types/Position";
 import {
     createBrowserRouter,
@@ -24,6 +24,14 @@ const App = () => {
         setPosition: setPosition,
         setDisappearTime: setNotificationDisappearTime
     };
+
+    useEffect(() => {
+            localStorage.setItem("settings", JSON.stringify({
+                count: notificationCount,
+                position: position,
+                disappearTime: notificationDisappearTime
+            }));
+        }, [notificationCount, position, notificationDisappearTime]);
 
     const router = createBrowserRouter([
         {

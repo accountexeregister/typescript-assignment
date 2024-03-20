@@ -6,8 +6,8 @@ const Settings = (props: { config: NotificationConfig }) => {
     const { config } = props;
     const setConfigCountWithStorage = (count: number) => {
         count = isNaN(count) ? 0 : count;
-        localStorage.setItem("settings", JSON.stringify({count: count, 
-            position: config.position, disappearTime: config.disappearTime}));
+        //localStorage.setItem("settings", JSON.stringify({count: count, 
+        //    position: config.position, disappearTime: config.disappearTime}));
         config.setCount(count);
         /*
         config.setCount(count => {
@@ -18,7 +18,7 @@ const Settings = (props: { config: NotificationConfig }) => {
     };
     
     const setConfigPositionWithStorage = (position: Position) => {
-        localStorage.setItem("settings", JSON.stringify({count: config.count, position: position, disappearTime: config.disappearTime}));
+        // localStorage.setItem("settings", JSON.stringify({count: config.count, position: position, disappearTime: config.disappearTime}));
         config.setPosition(position);
         /*
         config.setPosition(position => {
@@ -30,7 +30,7 @@ const Settings = (props: { config: NotificationConfig }) => {
 
     const setConfigDissapearTimeWithStorage = (disappearTime: number) => {
         disappearTime = isNaN(disappearTime) ? 0 : disappearTime;
-        localStorage.setItem("settings", JSON.stringify({count: config.count, position: config.position, disappearTime: disappearTime}));
+        // localStorage.setItem("settings", JSON.stringify({count: config.count, position: config.position, disappearTime: disappearTime}));
         config.setDisappearTime(disappearTime);
         /*
         config.setDisappearTime(disappearTime => {

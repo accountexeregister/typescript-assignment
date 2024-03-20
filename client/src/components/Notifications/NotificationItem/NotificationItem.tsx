@@ -7,6 +7,9 @@ const  NotificationItem = (props: { notification: Notification, config: Notifica
     const { notification, config, deleteNotification } = props;
 
     const addNotifTimeout = (notification: Notification) => {
+        if (notification.timeoutId) {
+            clearTimeout(notification.timeoutId);
+        }
         notification.timeoutId = setTimeout(() => {
             deleteNotification(notification.id);
         }, config.disappearTime * 1000);
