@@ -19,12 +19,29 @@ const Main = (props: { config: NotificationConfig } ) => {
                 if (event.newValue) {
                     setNotifications(JSON.parse(event.newValue));
                 }
-            } else if (event.key === "settings") {
+            } 
+            if (event.key === "notificationCount") {
                 if (event.newValue) {
-                    const storedSettings = JSON.parse(event.newValue);
-                    props.config.setCount(storedSettings.count);
-                    props.config.setPosition(storedSettings.position);
-                    props.config.setDisappearTime(storedSettings.disappearTime);
+                    props.config.setCount(parseInt(JSON.parse(event.newValue)));
+                }
+            }
+            if (event.key === "position") {
+                if (event.newValue) {
+                    props.config.setPosition(JSON.parse(event.newValue));
+                }
+            }
+            if (event.key === "notificationDisappearTime") {
+                if (event.newValue) {
+                    setNotifications(prevNotifications => {
+                        console.log("notifications", prevNotifications);
+                        prevNotifications.forEach(notification => {
+                            if (notification.timeoutId) {
+                                clearTimeout(notification.timeoutId);
+                            }
+                        })
+                        return prevNotifications;
+                    });
+                    props.config.setDisappearTime(parseInt(JSON.parse(event.newValue)));
                 }
             }
         };
@@ -42,7 +59,7 @@ const Main = (props: { config: NotificationConfig } ) => {
         eventSource.onmessage = function(event: MessageEvent) {
             const data = JSON.parse(event.data);
             const notification : Notification = {id: data.msg_id, msg: data.msg};
-            setNotifications(prevNotifications => [notification, ...prevNotifications].slice(0, props.config.count));
+            setNotifications(prevNotifications => [notification, ...prevNotifications]);
             //setNotificationsWithStorage(notification);
             // notification.timeoutId = setTimeout(() => deleteNotification(notification.id), props.config.disappearTime * 1000);
         };

@@ -27,7 +27,7 @@ const  NotificationItem = (props: { notification: Notification, config: Notifica
             addNotifTimeout(notification);
         }
 
-    }, [config.disappearTime]);
+    }, []);
 
     return (
         <div className="notification-item" onMouseEnter = {() => removeNotifTimeout(notification)}

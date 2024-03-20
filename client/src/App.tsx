@@ -12,10 +12,13 @@ import Main from "./Pages/Main";
 import "./App.css";
 
 const App = () => {
+    const localNotificationCount = localStorage.getItem("notificationCount");
+    const localPosition = localStorage.getItem("position");
+    const localNotificationDisappearTime = localStorage.getItem("notificationDisappearTime");
 
-    const [notificationCount, setNotificationCount] = useState(0);
-    const [position, setPosition] = useState("TOP_LEFT" as Position);
-    const [notificationDisappearTime, setNotificationDisappearTime] = useState(0);
+    const [notificationCount, setNotificationCount] = useState(localNotificationCount ? parseInt(JSON.parse(localNotificationCount)) : 0);
+    const [position, setPosition] = useState(localPosition ? JSON.parse(localPosition) : "TOP_LEFT" as Position);
+    const [notificationDisappearTime, setNotificationDisappearTime] = useState(localNotificationDisappearTime ? parseFloat(JSON.parse(localNotificationDisappearTime)) : 0);
     const notificationConfig = {
         count: notificationCount,
         position: position,
@@ -26,11 +29,9 @@ const App = () => {
     };
 
     useEffect(() => {
-            localStorage.setItem("settings", JSON.stringify({
-                count: notificationCount,
-                position: position,
-                disappearTime: notificationDisappearTime
-            }));
+            localStorage.setItem("notificationCount", JSON.stringify(notificationCount));
+            localStorage.setItem("position", JSON.stringify(position));
+            localStorage.setItem("notificationDisappearTime", JSON.stringify(notificationDisappearTime));
         }, [notificationCount, position, notificationDisappearTime]);
 
     const router = createBrowserRouter([
