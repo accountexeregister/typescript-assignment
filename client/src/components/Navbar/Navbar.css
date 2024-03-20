@@ -33,3 +33,7 @@ Link {
 .notification-task {
     font-size:large;
 }
+
+.navbar-hr {
+    margin: 0px;
+}

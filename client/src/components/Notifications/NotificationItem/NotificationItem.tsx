@@ -1,6 +1,6 @@
 import NotificationConfig from "../../../Interfaces/NotificationConfig";
 import Notification from "../../../Interfaces/Notification";
-import { Dispatch, SetStateAction, useEffect } from "react";
+import { useEffect } from "react";
 import "./NotificationItem.css";
 
 const  NotificationItem = (props: { notification: Notification, config: NotificationConfig, deleteNotification: (id: number) => void }) => {
@@ -13,14 +13,14 @@ const  NotificationItem = (props: { notification: Notification, config: Notifica
         notification.timeoutId = setTimeout(() => {
             deleteNotification(notification.id);
         }, config.disappearTime * 1000);
-    }
+    };
 
     const removeNotifTimeout = (notification: Notification) => {    
         if (notification.timeoutId) {
             clearTimeout(notification.timeoutId);
         }
         notification.timeoutId = undefined;
-    }
+    };
 
     useEffect(() => {
         if (!notification.timeoutId) {
@@ -31,7 +31,7 @@ const  NotificationItem = (props: { notification: Notification, config: Notifica
 
     return (
         <div className="notification-item" onMouseEnter = {() => removeNotifTimeout(notification)}
-        onMouseLeave = {() => addNotifTimeout(notification)}>
+            onMouseLeave = {() => addNotifTimeout(notification)}>
             <div className="message">{notification.msg}</div>
             <button className="close-btn" onClick={() => deleteNotification(notification.id)}>X</button>
         </div>

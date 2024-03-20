@@ -6,39 +6,17 @@ const Settings = (props: { config: NotificationConfig }) => {
     const { config } = props;
     const setConfigCountWithStorage = (count: number) => {
         count = isNaN(count) ? 0 : count;
-        //localStorage.setItem("settings", JSON.stringify({count: count, 
-        //    position: config.position, disappearTime: config.disappearTime}));
         config.setCount(count);
-        /*
-        config.setCount(count => {
-            localStorage.setItem("settings", JSON.stringify({count: count, position: config.position}));
-            return count;
-        });
-        */
     };
     
     const setConfigPositionWithStorage = (position: Position) => {
-        // localStorage.setItem("settings", JSON.stringify({count: config.count, position: position, disappearTime: config.disappearTime}));
         config.setPosition(position);
-        /*
-        config.setPosition(position => {
-            localStorage.setItem("settings", JSON.stringify({count: config.count, position: position}));
-            return position;
-        });
-        */
-    }
+    };
 
     const setConfigDissapearTimeWithStorage = (disappearTime: number) => {
         disappearTime = isNaN(disappearTime) ? 0 : disappearTime;
-        // localStorage.setItem("settings", JSON.stringify({count: config.count, position: config.position, disappearTime: disappearTime}));
         config.setDisappearTime(disappearTime);
-        /*
-        config.setDisappearTime(disappearTime => {
-            localStorage.setItem("settings", JSON.stringify({count: config.count, position: config.position}));
-            return disappearTime;
-        });
-        */
-    }
+    };
         
     return (
         <div className="settings-div">

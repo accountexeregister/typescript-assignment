@@ -1,10 +1,6 @@
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./Navbar.css";
 
-const linkStyle = {
-    color: "white",
-    textDecoration: "none"
-};
 const CustomNavLink = (props: {to: string, text: string}) => {
     return (<NavLink className={({isActive}) =>
         "nav-link" + (isActive ? "-active" : "")
@@ -13,7 +9,7 @@ const CustomNavLink = (props: {to: string, text: string}) => {
 
 const Navbar = () => {
     return (
-        <div id="navbar">
+        <div>
             <nav>
                 <span className="notification-task">Notification task</span>
                 <ul>
@@ -25,7 +21,7 @@ const Navbar = () => {
                     </li>
                 </ul>
             </nav>
-            <hr style={{ margin: 0 }} />
+            <hr className="navbar-hr" />
         </div>
     );
 };

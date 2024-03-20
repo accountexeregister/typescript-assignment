@@ -29,10 +29,10 @@ const App = () => {
     };
 
     useEffect(() => {
-            localStorage.setItem("notificationCount", JSON.stringify(notificationCount));
-            localStorage.setItem("position", JSON.stringify(position));
-            localStorage.setItem("notificationDisappearTime", JSON.stringify(notificationDisappearTime));
-        }, [notificationCount, position, notificationDisappearTime]);
+        localStorage.setItem("notificationCount", JSON.stringify(notificationCount));
+        localStorage.setItem("position", JSON.stringify(position));
+        localStorage.setItem("notificationDisappearTime", JSON.stringify(notificationDisappearTime));
+    }, [notificationCount, position, notificationDisappearTime]);
 
     const router = createBrowserRouter([
         {

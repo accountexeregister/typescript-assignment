@@ -6,7 +6,7 @@ import NotificationsContainer from "../components/Notifications/NotificationsCon
 const Main = (props: { config: NotificationConfig } ) => {
     const localNotifications = localStorage.getItem("notifications");
     const [notifications, setNotifications] = useState<Notification[]>(localNotifications 
-        ? JSON.parse(localNotifications) : []);
+        ? JSON.parse(localNotifications).slice(0, props.config.count) : []);
 
 
     useEffect(() => {
@@ -38,7 +38,7 @@ const Main = (props: { config: NotificationConfig } ) => {
                             if (notification.timeoutId) {
                                 clearTimeout(notification.timeoutId);
                             }
-                        })
+                        });
                         return prevNotifications;
                     });
                     props.config.setDisappearTime(parseInt(JSON.parse(event.newValue)));
@@ -59,9 +59,7 @@ const Main = (props: { config: NotificationConfig } ) => {
         eventSource.onmessage = function(event: MessageEvent) {
             const data = JSON.parse(event.data);
             const notification : Notification = {id: data.msg_id, msg: data.msg};
-            setNotifications(prevNotifications => [notification, ...prevNotifications]);
-            //setNotificationsWithStorage(notification);
-            // notification.timeoutId = setTimeout(() => deleteNotification(notification.id), props.config.disappearTime * 1000);
+            setNotifications(prevNotifications => [notification, ...prevNotifications].slice(0, props.config.count));
         };
 
         return () => {
@@ -69,69 +67,10 @@ const Main = (props: { config: NotificationConfig } ) => {
         };
     }, []);
 
-    /*
-    useEffect(() => {
-        const storedSettings = localStorage.getItem("settings");
-        if (storedSettings) {
-            props.config.setCount(JSON.parse(storedSettings).count);
-            props.config.setPosition(JSON.parse(storedSettings).position);
-            props.config.setDisappearTime(JSON.parse(storedSettings).disappearTime);
-        }
-    }, [localStorage.getItem("settings")]);
-    */
-
     const deleteNotification = (id: number) => {
-        setNotifications(prevNotifications => {
-            const newNotifications = prevNotifications.filter((notification) => notification.id !== id);
-            // localStorage.setItem("notifications", JSON.stringify(newNotifications));
-            return newNotifications;
-        });
+        setNotifications(prevNotifications => prevNotifications.filter((notification) => notification.id !== id));
     };
 
-    const updateNotifications = (endingIndex: number) => {
-        setNotifications((prevNotifications) => {
-            const newNotifications = prevNotifications.slice(0, endingIndex);
-            localStorage.setItem("notifications", JSON.stringify(newNotifications));
-            return prevNotifications.slice(0, endingIndex)
-        });
-    };
-
-    const setNotificationsWithStorage = (notification: Notification) => {
-        setNotifications(prevNotifications => {
-            const newNotifications = [notification, ...prevNotifications].slice(0, props.config.count);
-            // localStorage.setItem("notifications", JSON.stringify(newNotifications));
-            return newNotifications;
-        });
-    }
-
-    useEffect(() => {
-        notifications.forEach((notification) => {
-            if (notification.timeoutId) {
-                clearTimeout(notification.timeoutId);
-                notification.timeoutId = undefined;
-            }
-            // setTimeout(() => deleteNotification(notification.id), props.config.disappearTime * 1000);
-        });
-    }, [props.config.disappearTime]);
-
-    /*
-    useEffect(() => {
-        // Obtain notifications from localStorage when the component mounts
-        console.log(localStorage.getItem("notifications"));
-        const storedNotifications = localStorage.getItem("notifications");
-        if (storedNotifications) {
-            setNotifications(JSON.parse(storedNotifications));
-        }
-    }, [localStorage.getItem("notifications")]);
-    */
-    
-    
-    /*
-    useEffect(() => {
-        // Save notifications to localStorage whenever the notifications state changes
-        localStorage.setItem("notifications", JSON.stringify(notifications));
-    }, [notifications]);
-    */
 
     return (
         <NotificationsContainer position={props.config.position} notifications={notifications} config={props.config} 
