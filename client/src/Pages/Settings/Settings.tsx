@@ -1,5 +1,5 @@
-import NotificationConfig from "../Interfaces/NotificationConfig";
-import { Position } from "../Types/Position";
+import NotificationConfig from "../../Interfaces/NotificationConfig";
+import { Position } from "../../types/Position";
 import "./Settings.css";
 
 const Settings = (props: { config: NotificationConfig }) => {

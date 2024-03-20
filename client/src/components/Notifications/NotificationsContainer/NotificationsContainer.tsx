@@ -1,7 +1,7 @@
-import NotificationConfig from "../Interfaces/NotificationConfig";
-import { Position } from "../Types/Position";
-import Notification from "../Interfaces/Notification";
-import NotificationItem from "./NotificationItem";
+import NotificationConfig from "../../../Interfaces/NotificationConfig";
+import { Position } from "../../../types/Position";
+import Notification from "../../../Interfaces/Notification";
+import NotificationItem from "../NotificationItem/NotificationItem";
 import "./NotificationsContainer.css";
 
 const NotificationsContainer = (props: { position: Position, notifications: Notification[],

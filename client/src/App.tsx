@@ -1,13 +1,13 @@
 import { useState } from "react";
-import { Position } from "./Types/Position";
+import { Position } from "./types/Position";
 import {
     createBrowserRouter,
     RouterProvider,
     Outlet
 } from "react-router-dom";
 import React from "react";
-import Navbar from "./Navbar/Navbar";
-import Settings from "./Pages/Settings";
+import Navbar from "./components/Navbar/Navbar";
+import Settings from "./Pages/Settings/Settings";
 import Main from "./Pages/Main";
 import "./App.css";
 

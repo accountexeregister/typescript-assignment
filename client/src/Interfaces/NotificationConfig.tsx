@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import { Position } from "../Types/Position";
+import { Position } from "../types/Position";
 
 interface NotificationConfig {
     count: number;

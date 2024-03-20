@@ -1,5 +1,5 @@
-import NotificationConfig from "../Interfaces/NotificationConfig";
-import Notification from "../Interfaces/Notification";
+import NotificationConfig from "../../../Interfaces/NotificationConfig";
+import Notification from "../../../Interfaces/Notification";
 import { Dispatch, SetStateAction, useEffect } from "react";
 import "./NotificationItem.css";
 
