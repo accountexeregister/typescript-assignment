@@ -5,14 +5,16 @@ import NotificationsContainer from "../components/Notifications/NotificationsCon
 
 const Main = (props: { config: NotificationConfig } ) => {
     const localNotifications = localStorage.getItem("notifications");
+    // Set initial notifications to notifications stored by local storage (if it exists) or empty array
     const [notifications, setNotifications] = useState<Notification[]>(localNotifications 
         ? JSON.parse(localNotifications).slice(0, props.config.count) : []);
 
-
+    // Save changes of notifications to local storage
     useEffect(() => {
         localStorage.setItem("notifications", JSON.stringify(notifications));
     }, [notifications]);
 
+    // Sets up event handling of changes to local storage to change notifications and notification config settings
     useEffect(() => {
         const handleStorageChange = (event: StorageEvent) => {
             if (event.key === "notifications") {
@@ -31,9 +33,10 @@ const Main = (props: { config: NotificationConfig } ) => {
                 }
             }
             if (event.key === "notificationDisappearTime") {
+                // When notification disappear time changes, clear all timeouts of notifications
+                // to reset timeouts with new disappear time
                 if (event.newValue) {
                     setNotifications(prevNotifications => {
-                        console.log("notifications", prevNotifications);
                         prevNotifications.forEach(notification => {
                             if (notification.timeoutId) {
                                 clearTimeout(notification.timeoutId);

@@ -16,6 +16,10 @@
     width: 1000px;
 }
 
+.settings-container:hover {
+    background-color: #393f4f;
+}
+
 span {
     width: 200px;
     flex-shrink: 0;

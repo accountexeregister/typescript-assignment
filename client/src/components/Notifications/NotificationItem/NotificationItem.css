@@ -8,6 +8,10 @@
     align-items: center;
 }
 
+.notification-item:hover {
+    background-color: #4a90e2;
+}
+
 .message {
     flex: 1;
 }

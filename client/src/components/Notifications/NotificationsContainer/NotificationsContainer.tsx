@@ -10,7 +10,8 @@ const NotificationsContainer = (props: { position: Position, notifications: Noti
     return (
         <div id="notifications-container" className={`notifications-container-${position}`}>
             {notifications.map((notification) => (
-                <NotificationItem key={notification.id} notification={notification} config={config} deleteNotification={deleteNotification} />
+                <NotificationItem key={notification.id} notification={notification} config={config} 
+                    deleteNotification={deleteNotification} />
             ))}
         </div>
     );
