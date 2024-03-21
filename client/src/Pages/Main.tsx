@@ -4,6 +4,8 @@ import Notification from "../Interfaces/Notification";
 import NotificationsContainer from "../components/Notifications/NotificationsContainer/NotificationsContainer";
 
 const Main = (props: { config: NotificationConfig } ) => {
+    const HOST = "127.0.0.1";
+    const PORT = 9000;
     const localNotifications = localStorage.getItem("notifications");
     // Set initial notifications to notifications stored by local storage (if it exists) or empty array
     const [notifications, setNotifications] = useState<Notification[]>(localNotifications 
@@ -59,7 +61,7 @@ const Main = (props: { config: NotificationConfig } ) => {
 
 
     useEffect(() => {
-        const eventSource = new EventSource("http://127.0.0.1:9000/events");
+        const eventSource = new EventSource(`http://${HOST}:${PORT}/events`);
         eventSource.onmessage = function(event: MessageEvent) {
             const data = JSON.parse(event.data);
             const notification : Notification = {id: data.msg_id, msg: data.msg};
