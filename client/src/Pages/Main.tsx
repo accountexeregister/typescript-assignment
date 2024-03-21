@@ -19,9 +19,10 @@ const Main = (props: { config: NotificationConfig } ) => {
         const handleStorageChange = (event: StorageEvent) => {
             if (event.key === "notifications") {
                 if (event.newValue) {
-                    setNotifications(JSON.parse(event.newValue));
+                    setNotifications(JSON.parse(event.newValue).slice(0, props.config.count));
                 }
             } 
+
             if (event.key === "notificationCount") {
                 if (event.newValue) {
                     props.config.setCount(parseInt(JSON.parse(event.newValue)));
@@ -68,7 +69,19 @@ const Main = (props: { config: NotificationConfig } ) => {
         return () => {
             eventSource.close();
         };
+    }, [props.config.count]);
+
+    useEffect(() => {
+        setNotifications(prevNotifications => {
+            prevNotifications.forEach(notification => {
+                if (notification.timeoutId) {
+                    clearTimeout(notification.timeoutId);
+                }
+            });
+            return prevNotifications;
+        });
     }, []);
+
 
     const deleteNotification = (id: number) => {
         setNotifications(prevNotifications => prevNotifications.filter((notification) => notification.id !== id));
