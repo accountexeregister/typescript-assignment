@@ -1,8 +1,8 @@
 import { NavLink } from "react-router-dom";
 import "./Navbar.css";
 
-const CustomNavLink = (props: {to: string, text: string}) => {
-    return (<NavLink className={({isActive}) =>
+const CustomNavLink = (props: { to: string, text: string }) => {
+    return (<NavLink className={({ isActive }) =>
         "nav-link" + (isActive ? "-active" : "")
     } to={props.to}>{props.text}</NavLink>);
 };

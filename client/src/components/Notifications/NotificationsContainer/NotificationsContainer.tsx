@@ -5,7 +5,7 @@ import NotificationItem from "../NotificationItem/NotificationItem";
 import "./NotificationsContainer.css";
 
 const NotificationsContainer = (props: { position: Position, notifications: Notification[],
-    config: NotificationConfig, deleteNotification: (id: number) => void}) => {
+    config: NotificationConfig, deleteNotification: (id: number) => void }) => {
     const { position, notifications, config, deleteNotification } = props;
     return (
         <div id="notifications-container" className={`notifications-container-${position}`}>

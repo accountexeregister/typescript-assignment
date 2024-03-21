@@ -3,7 +3,8 @@ import Notification from "../../../Interfaces/Notification";
 import { useEffect } from "react";
 import "./NotificationItem.css";
 
-const  NotificationItem = (props: { notification: Notification, config: NotificationConfig, deleteNotification: (id: number) => void }) => {
+const  NotificationItem = (props: { notification: Notification, config: NotificationConfig, 
+    deleteNotification: (id: number) => void }) => {
     const { notification, config, deleteNotification } = props;
 
     const addNotifTimeout = (notification: Notification) => {
