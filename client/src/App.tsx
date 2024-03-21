@@ -12,6 +12,7 @@ import Main from "./Pages/Main";
 import "./App.css";
 
 const App = () => {
+    // Load notification config settings from local storage
     const localNotificationCount = localStorage.getItem("notificationCount");
     const localPosition = localStorage.getItem("position");
     const localNotificationDisappearTime = localStorage.getItem("notificationDisappearTime");
