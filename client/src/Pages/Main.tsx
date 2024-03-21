@@ -57,7 +57,7 @@ const Main = (props: { config: NotificationConfig } ) => {
         return () => {
             window.removeEventListener("storage", handleStorageChange);
         };
-    }, []);
+    }, [props.config.count]);
 
 
     useEffect(() => {
@@ -72,18 +72,6 @@ const Main = (props: { config: NotificationConfig } ) => {
             eventSource.close();
         };
     }, [props.config.count]);
-
-    useEffect(() => {
-        setNotifications(prevNotifications => {
-            prevNotifications.forEach(notification => {
-                if (notification.timeoutId) {
-                    clearTimeout(notification.timeoutId);
-                }
-            });
-            return prevNotifications;
-        });
-    }, []);
-
 
     const deleteNotification = (id: number) => {
         setNotifications(prevNotifications => prevNotifications.filter((notification) => notification.id !== id));
